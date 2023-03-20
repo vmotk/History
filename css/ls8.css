@@ -1,0 +1,47 @@
+.container-form {
+    display: none;
+    justify-content: center;
+}
+
+.war-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border: 3px solid black;
+    padding: 30px;
+    margin-top: 30px;
+}
+#width {
+    width: 60px;
+    border-radius: 25px;
+    margin-top: 30px;
+}
+.battle {
+    text-align: center;
+}
+#stalingrad {
+    width: 750px;
+    height: 500px;
+}
+#color {
+    background-color: grey;
+    width: 100%;
+    color: aliceblue;
+    height: 280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 50px;
+}
+
+#color h3{
+    padding: 10px;
+}
+
+#height {
+    width: 55px;
+    border-radius: 10px;
+}
+.click_here {
+    text-align: center;
+}

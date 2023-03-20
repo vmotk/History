@@ -1,0 +1,27 @@
+*{
+    text-align: center;
+}
+
+.card {
+    width: 500px;
+    /* height: 600px; */
+    border: 3px solid black;
+    padding: 7px;
+}
+
+.img_container img {
+    width: 300px;
+    height: 400px;
+}
+
+/* button {
+    width: 200px;
+    height: 30px;
+} */
+
+#war_list {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+    padding: 100px;
+}

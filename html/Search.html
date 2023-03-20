@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="../css/background.css">
+    <link rel="stylesheet" href="../css/ls8.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e9e17aa9-7921-42c4-bc2a-d120c282d21b/d8p4b73-d72afd6d-de2e-4224-92be-162ea54adb98.png/v1/fill/w_618,h_592,q_80,strp/pmg_scp_foundation_logo_by_venomargy_d8p4b73-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTkyIiwicGF0aCI6IlwvZlwvZTllMTdhYTktNzkyMS00MmM0LWJjMmEtZDEyMGMyODJkMjFiXC9kOHA0YjczLWQ3MmFmZDZkLWRlMmUtNDIyNC05MmJlLTE2MmVhNTRhZGI5OC5wbmciLCJ3aWR0aCI6Ijw9NjE4In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.84g-p8BgMbkIOnQU1s_9uTa0s8t-rkRfvD07EksNM6w"
+                alt="">
+        </div>
+
+        <div class="hamburger">
+            <div class="bars1"></div>
+            <div class="bars2"></div>
+            <div class="bars3"></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="./ww2.html"> Home</a></li>
+            <li><a href="#about"> War</a></li>
+            <li><a href="#"> Generals</a></li>
+            <li><a href="Search.html"> Search</a></li>
+            <li><a href="warlist.html"> War List</a></li>
+            <li><button class="login-button"><a href="./Register.html">Register</a> </button></li>
+        </ul>
+    </nav>
+    <div class="container_search">
+        <h1>Search more information</h1>
+        <form onsubmit="searchWikipedia(event)">
+            <label for="searchTerm">Search Term:</label>
+            <input type="text" id="searchTerm" name="searchTerm">
+            <button type="submit">Search</button>
+        </form>
+        <div id="searchResults"></div>
+    </div>
+
+
+    <div id="color">
+        <div class="info">
+            <h3>Name:David</h3>
+            <h3>Age:13</h3>
+            <h3>School: International school HCMC American Academy</h3>
+        </div>
+        <div>
+            <h3>Adress:district 1 HCHC</h3>
+            <h3>Mail:nguyenhamminhhoang@gmail.com</h3>
+            <h3>Phone:0901443886</h3>
+        </div>
+    </div>
+    <script>
+        const searchWikipedia = async (event) => {
+            event.preventDefault();
+            const searchTerm = document.getElementById("searchTerm").value;
+            const url = `https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=${searchTerm}&origin=*`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayResults(data.query.search);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const displayResults = (results) => {
+            const searchResults = document.getElementById("searchResults");
+            searchResults.innerHTML = "";
+            results.forEach((result) => {
+                const title = result.title;
+                const snippet = result.snippet;
+                const pageUrl = `https://en.wikipedia.org/wiki/${title}`;
+                const resultItem = document.createElement("div");
+                resultItem.innerHTML = `
+					<h3><a href="${pageUrl}" target="_blank">${title}</a></h3>
+					<p>${snippet}...</p>
+				`;
+                searchResults.appendChild(resultItem);
+            });
+        };
+    </script>
+    <script src="../js/war_list.js"></script>
+    <style>
+        .container_search {
+            max-width: 800px;
+            margin: auto;
+            padding: 100px;
+            padding-bottom: 300px; ;
+        }
+        #color{
+            padding-top: 100px;
+        }
+    
+    </style>
+</body>
+</html>
